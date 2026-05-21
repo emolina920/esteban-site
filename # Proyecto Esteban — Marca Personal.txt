@@ -1,0 +1,118 @@
+# Proyecto Esteban — Marca Personal & Sistemas Inmobiliarios
+
+## Quién es Esteban
+
+Operador inmobiliario y desarrollador que construye sistemas escalables para real estate. Doble ciudadanía colombiana-española. Recientemente reubicado a Colombia.
+
+**Track record:**
+- **Consultor financiero** (5 años) — Valoración, due diligence, estructura financiera de deals
+- **Fundador de Flaternity** (flaternity.eu) — Coliving R2R en Barcelona y Valencia. Escaló de 30 a 210 habitaciones, 50+ apartamentos, €1.5M ARR. Levantó ronda de €1M al 10%. Modelo de personal shopper para inversionistas: buscar oportunidad → reformar → operar, ofreciendo 8-10% de rentabilidad anual sin contar valorización. ROI en 1-2 años. Construyó TODOS los sistemas de la empresa: marketing, operaciones, finanzas, automatizaciones y agentes IA
+- **Ahora:** Operador de sistemas inmobiliarios en Colombia (Eje Cafetero) + planes de desarrollo en Bogotá
+
+**Skills técnicos:** Web development (React, Next.js), producción de contenido (reels, video, drone), IA y automatización, WhatsApp API
+
+**Equipo:** Samsung Galaxy S25 (contenido), operador drone (~$150K COP), WhatsApp Business (CRM)
+
+---
+
+## La marca personal — Concepto
+
+**Posicionamiento:** "No vendo propiedades. Construyo sistemas que las venden."
+
+No es un broker tradicional ni un dev genérico. Es el operador que construye la infraestructura digital que las inmobiliarias no saben hacer. Cada propiedad listada en el sitio es una demostración en vivo de sus sistemas.
+
+**Tres capas del sitio:**
+1. **Propiedades activas** — Cada listing es un demo de los sistemas funcionando (landing, WhatsApp IA, contenido, drone, tour 360°)
+2. **Sistemas como servicio** — Landing por propiedad, WhatsApp IA, contenido & reels, sistema completo de ventas
+3. **Track record + desarrollo** — Historia (Flaternity → Colombia), métricas reales, y pipeline de desarrollo en Bogotá
+
+---
+
+## Propiedad activa: Casa Lago Cerritos
+
+- **Ubicación:** Cerritos Malabar, Pereira, Colombia
+- **Specs:** 500 m² construidos, lote 2.000 m², 3 suites con baño privado, piscina privada, vista directa al lago
+- **Precio:** $6.500M COP (~USD $1.78M). Negociación floor ~$5.200M. Fair market value estimado $4.500M–$5.500M (listado con premium)
+- **Diferencial clave:** Vista directa al lago — una de las pocas propiedades en Malabar con este atributo
+- **Estrategia:** Venta directa sin agencia. Ahorro estimado vs. comisión 3%: ~$160M COP
+
+**Plan de venta completo documentado en:** `plan-venta-malabar.md`
+- Staging DIY, producción de contenido (foto, drone, video, tour 360°)
+- Presencia en portales: FincaRaíz, Metrocuadrado, CienCuadras, MercadoLibre, Properati
+- Canales internacionales: EVERYPLACE (daniel@everyplace.co), Sotheby's Colombia, Viventa.co
+- Calendario de 12 reels orgánicos, pauta Meta Ads (objetivo: mensajes WhatsApp)
+- WhatsApp Business como mini-CRM con etiquetas de pipeline
+- Documentación legal completa (certificado tradición, escritura, paz y salvos, catastral, RUT)
+- Inversión primer mes: ~$1M COP. Primeros 3 meses con pauta: ~$15M-$20M COP
+
+---
+
+## Desarrollo Bogotá — Pipeline futuro
+
+- **Capacidad de inversión:** +$3.000M COP
+- **Zonas de interés:** Chapinero (reforma + densificación), Usaquén/Chicó (vivienda de lujo), Centro/La Candelaria (renovación urbana)
+- **Tipos de proyecto:** Compra de casas para reforma y subdivisión, lotes para construcción de edificio residencial (6-12 unidades), alianzas con socios e inversionistas
+- **Estado:** En exploración activa
+
+---
+
+## Marco legal — Corretaje en Colombia
+
+- **No se requiere licencia** para intermediar ventas (Código de Comercio, Arts. 1340-1346)
+- **Sí se requiere:** Matrícula mercantil (Cámara de Comercio), RUT con CIIU 6820, factura electrónica si responsable de IVA
+- **Comisiones estándar:** 3% urbano, 4-5% rural/campestre, negociable en alto valor
+- **Impuestos sobre comisiones:** IVA 19% (si responsable), retención en la fuente 10-11%
+- **Contrato:** Contrato de corretaje (Arts. 1340-1346 C.Co.) — escrito recomendado con % comisión, exclusividad, y timing de pago
+- **Legislación pendiente:** Proyecto de Ley 242/2025 busca profesionalizar el rol con registro obligatorio
+
+---
+
+## Stack técnico — Sitio web
+
+**Recomendado:**
+- **Framework:** Next.js App Router
+- **CMS:** Payload CMS (MIT, se instala dentro del proyecto Next.js, code-first TypeScript)
+- **DB:** PostgreSQL via Drizzle ORM (Supabase o Neon, ~$5-15/mes)
+- **Imágenes:** Cloudinary (free tier 25 credits/mes) o Payload media + S3 + next/image
+- **Mapas:** Mapbox (50K loads/mes gratis, mejor customización que Google Maps)
+- **Búsqueda:** PostgreSQL queries via Payload Local API inicialmente; Meilisearch cuando escale
+- **WhatsApp:** Click-to-chat links inicialmente → WhatsApp Business API (Meta Cloud API) cuando crezca volumen
+- **SEO:** generateMetadata(), sitemap.ts, JSON-LD (RealEstateListing, GeoCoordinates, RealEstateAgent), URLs geográficas
+- **Hosting:** Vercel Pro ($20/mes) para frontend + Hetzner/DO VPS (~€10-20/mes) para Payload + PostgreSQL
+- **Costo total infraestructura:** $35-75/mes
+- **Dominio:** .com principal + .com.co secundario + .co reservado
+
+---
+
+## Diseño del sitio — Estado actual
+
+**Estética:** Dark theme (#0a0a0a), acento sky blue (#38bdf8), tipografía editorial (Instrument Serif + DM Sans + JetBrains Mono). Inspirado en el storytelling vertical de roman-loves.design pero sin violeta.
+
+**Componentes creados:**
+
+1. **`esteban-site-final.jsx`** — Página principal completa con storytelling vertical:
+   - Hero con statement gigante + grid background
+   - Marquee horizontal con keywords
+   - Featured property (Malabar) como demo en vivo con métricas
+   - Quote central sobre costo de vender sin sistema
+   - Marquee reverse "Soy Esteban, operador inmobiliario que programa"
+   - Intro personal con link a Flaternity
+   - 4 craft cards numeradas (_01 landing, _02 WhatsApp IA, _03 contenido, _04 sistema completo)
+   - Case study Flaternity con métricas reales (50+ apts, 200+ rooms, €1.5M ARR, €1M funding, 8-10% yield)
+   - Timeline visual de evolución (Números → Escala → Sistemas → Desarrollo)
+   - Sección Bogotá con zonas + "busco activamente"
+   - CTA de contacto + footer
+
+2. **`landing-casa-lago-cerritos.jsx`** — Landing dedicada para la propiedad de Malabar (luxury, tipografía Cormorant Garamond, placeholders para fotos)
+
+3. **`marca-personal-home.jsx`** — Versión anterior de la home (superseded por esteban-site-final.jsx)
+
+4. **`operador-track-record.jsx`** — Versión anterior de track record (integrado en esteban-site-final.jsx)
+
+---
+
+## Comunicación con Esteban
+
+- **Estilo:** Directo, peer-to-peer. Ejecución rápida sobre análisis extenso. Instrucciones paso a paso concretas
+- **Idioma:** Español para conversación, bilingüe (ES/EN) para copy de cara a cliente
+- **Preferencias:** Custom code sobre plataformas. Lean sobre costoso. Datos reales sobre estimaciones vagas

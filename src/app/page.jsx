@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react";
+import HologramScroll from "../components/HologramScroll";
 
 /* ═══════════════════════════════════════════════
    DESIGN SYSTEM
@@ -390,6 +391,9 @@ export default function EstebanSite() {
           </h2>
         </div>
       </section>
+
+      {/* ═══ HOLOGRAM SCROLL ═══ */}
+      <HologramScroll />
 
       {/* ═══ MARQUEE 2 + INTRO ═══ */}
       <section style={{ padding: "5rem 0 0" }}>

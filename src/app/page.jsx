@@ -146,7 +146,7 @@ export default function EstebanSite() {
   }, []);
 
   return (
-    <div style={{ fontFamily: F.body, color: C.text, background: C.bg, overflowX: "hidden" }}>
+    <div style={{ fontFamily: F.body, color: C.text, background: C.bg, overflowX: "clip" }}>
       <link
         href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400&display=swap"
         rel="stylesheet"

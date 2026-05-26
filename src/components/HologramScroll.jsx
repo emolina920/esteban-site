@@ -6,6 +6,7 @@ const DIR            = '/hologram/'
 const INITIAL_BATCH  = 15
 const BATCH_SIZE     = 15
 const MOBILE_BP      = 768
+const MOBILE_STEP    = 2
 
 function pad(n) {
   return String(n).padStart(4, '0')
@@ -18,11 +19,12 @@ const PHASES = [
 ]
 
 export default function HologramScroll() {
-  const imgRef     = useRef(null)
-  const sectionRef = useRef(null)
-  const imgsRef    = useRef([])
-  const lastFrame  = useRef(-1)
-  const tickingRef = useRef(false)
+  const imgRef      = useRef(null)
+  const sectionRef  = useRef(null)
+  const imgsRef     = useRef([])
+  const lastFrame   = useRef(-1)
+  const tickingRef  = useRef(false)
+  const isMobileRef = useRef(false)
 
   const [loaded,         setLoaded]         = useState(0)
   const [ready,          setReady]          = useState(false)
@@ -32,7 +34,11 @@ export default function HologramScroll() {
 
   // ── Mobile detection ──────────────────────────────────────────────
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < MOBILE_BP)
+    const check = () => {
+      const m = window.innerWidth < MOBILE_BP
+      setIsMobile(m)
+      isMobileRef.current = m
+    }
     check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
@@ -71,19 +77,21 @@ export default function HologramScroll() {
 
   // ── Lazy-load in batches ──────────────────────────────────────────
   const preload = useCallback(async () => {
+    const step = isMobileRef.current ? MOBILE_STEP : 1
+
     // 1) Priority batch — first INITIAL_BATCH frames
     const initial = []
-    for (let i = 0; i < Math.min(INITIAL_BATCH, TOTAL); i++) {
+    for (let i = 0; i < Math.min(INITIAL_BATCH, TOTAL); i += step) {
       initial.push(loadFrame(i))
     }
     await Promise.all(initial)
-    setReady(true) // ready as soon as first batch is in
+    setReady(true)
 
     // 2) Background batches of BATCH_SIZE
     for (let start = INITIAL_BATCH; start < TOTAL; start += BATCH_SIZE) {
       const end = Math.min(start + BATCH_SIZE, TOTAL)
       const batch = []
-      for (let i = start; i < end; i++) batch.push(loadFrame(i))
+      for (let i = start; i < end; i += step) batch.push(loadFrame(i))
       // eslint-disable-next-line no-await-in-loop
       await Promise.all(batch)
     }
@@ -216,6 +224,7 @@ export default function HologramScroll() {
             height: 'auto',
             mixBlendMode: 'screen',
             filter: 'brightness(1.2) saturate(1.1)',
+            willChange: 'transform',
             userSelect: 'none',
             pointerEvents: 'none',
           }}
